@@ -1,0 +1,46 @@
+{
+    "coord": {
+      "lon": 77.5913,
+      "lat": 12.9791
+    },
+    "weather": [
+      {
+        "id": 804,
+        "main": "Clouds",
+        "description": "overcast clouds",
+        "icon": "04d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 27.85,
+      "feels_like": 29.23,
+      "temp_min": 27.85,
+      "temp_max": 27.85,
+      "pressure": 1008,
+      "humidity": 60,
+      "sea_level": 1008,
+      "grnd_level": 908
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 5.88,
+      "deg": 276,
+      "gust": 7.12
+    },
+    "clouds": {
+      "all": 92
+    },
+    "dt": 1661066023,
+    "sys": {
+      "type": 1,
+      "id": 9208,
+      "country": "IN",
+      "sunrise": 1661042288,
+      "sunset": 1661087279
+    },
+    "timezone": 19800,
+    "id": 6695236,
+    "name": "Kanija Bhavan",
+    "cod": 200
+  }

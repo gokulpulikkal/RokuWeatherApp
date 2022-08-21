@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="HomePage" extends="Group">
+	<script type="text/brightscript" uri="HomePage.brs" />
+	<script type="text/brightscript" uri="HomePageModel.brs" />
+    <script type="text/brightscript" uri="pkg:/components/DataService/DataController/DataController.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Utils/CommonChecks.brs" />
+    <interface>
+        <field id="currentWeatherData" type="assocarray" onChange="onTitleChange"/>
+	</interface>
+	<children>
+        <!-- title at top of screen -->
+        <Poster id="backgroundPoster" width="1920" height="1080" uri="pkg:/images/backgrounds/nightSky.png"/>
+        <LayoutGroup translation="[60, 60]" itemspacings="[10]">
+            <Label id="cityNameLabel" font="font:LargeBoldSystemFont"/>
+            <Label id="dateLabel" text="Monday, August 15" font="font:MediumSystemFont"/>
+        </LayoutGroup>
+
+        <!-- weather icon on right side of screen -->
+        <Poster id="weatherInfoPoster" loadDisplayMode="scaleToFit" translation="[1300, 60]" width="400" height="400" uri="pkg:/images/PosterAssets/cloudy.png"/>
+
+        <!-- Temperature and weather condition labels -->
+        <LayoutGroup translation="[60, 450]" >
+            <Label id="temperatureLabel" text="28'F" font="font:LargeBoldSystemFont"/>
+            <Label id="climateLabel" text="Clear" font="font:MediumSystemFont"/>
+        </LayoutGroup>
+
+    <Timer id="timeUpdater" repeat="true" duration="60" control="start" />
+	</children>
+</component>
