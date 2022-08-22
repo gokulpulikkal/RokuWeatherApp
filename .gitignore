@@ -1,4 +1,5 @@
 # VS Code files for those working on multiple tools
+out
 out/*
 .vscode/*
 !.vscode/settings.json
