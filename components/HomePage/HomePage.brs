@@ -42,6 +42,12 @@ sub adjustViews()
     m.feelsLikeValueLabel.font.size = 100
     m.highestValueLabel.font.size = 100
     m.lowestValueLabel.font.size = 100
+
+    ' Set the colors
+    m.temperatureLabel.color = "#f5054f"
+    m.feelsLikeValueLabel.color = "#f5054f"
+    m.highestValueLabel.color = "#f5054f"
+    m.lowestValueLabel.color = "#f5054f"
 end sub
 
 function changeTimerLabel() as void
@@ -50,8 +56,22 @@ end function
 
 function setWeatherData(weather as object) as void
     if weather <> invalid
-        if IsAssociativeArray(weather.main) and weather.main.temp <> invalid
-            m.temperatureLabel.text = Fix(weather.main.temp).toStr() + "°C"
+        if IsAssociativeArray(weather.main)
+            if weather.main.temp <> invalid
+                m.temperatureLabel.text = Fix(weather.main.temp).toStr() + "°C"
+            end if
+
+            if weather.main.feels_like <> invalid
+                m.feelsLikeValueLabel.text = Fix(weather.main.feels_like).toStr() + "°C"
+            end if
+
+            if weather.main.temp_max <> invalid
+                m.highestValueLabel.text = Fix(weather.main.temp_max).toStr() + "°C"
+            end if
+
+            if weather.main.temp_min <> invalid
+                m.lowestValueLabel.text = Fix(weather.main.temp_min).toStr() + "°C"
+            end if
         end if
 
         if IsArray(weather.weather) and weather.weather.count() > 0 and IsString(weather.weather[0].description)

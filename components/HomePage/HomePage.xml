@@ -16,7 +16,7 @@
         </LayoutGroup>
 
         <!-- weather icon on right side of screen -->
-        <Poster id="weatherInfoPoster" loadDisplayMode="scaleToFit" translation="[1300, 60]" width="400" height="400" uri="pkg:/images/PosterAssets/cloudy.png" />
+        <Poster id="weatherInfoPoster" loadDisplayMode="scaleToFit" translation="[1440, 60]" width="400" height="400" uri="pkg:/images/PosterAssets/cloudy.png" />
 
         <!-- Temperature and weather condition labels -->
         <LayoutGroup translation="[60, 450]">
