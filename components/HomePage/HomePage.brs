@@ -6,7 +6,13 @@ sub init()
     m.dateLabel = m.top.findNode("dateLabel")
     m.temperatureLabel = m.top.findNode("temperatureLabel")
     m.climateLabel = m.top.findNode("climateLabel")
-    m.backgroundPoster = m.top.findNode("backgroundPoster")
+
+    m.feelsLikeLabel = m.top.findNode("feelsLikeLabel")
+    m.feelsLikeValueLabel = m.top.findNode("feelsLikeValueLabel")
+    m.highestLabel = m.top.findNode("highestLabel")
+    m.highestValueLabel = m.top.findNode("highestValueLabel")
+    m.lowestLabel = m.top.findNode("lowestLabel")
+    m.lowestValueLabel = m.top.findNode("lowestValueLabel")
 
     adjustViews()
     m.dateLabel.text = getCurrentTimeString()
@@ -14,7 +20,7 @@ sub init()
     ' ### node observers ###
     ' observe screen visibility
     m.top.observeField("visible", "onVisible")
-    m.timeUpdater.ObserveField("fire","changeTimerLabel")
+    m.timeUpdater.ObserveField("fire", "changeTimerLabel")
 end sub
 
 sub onVisible(obj)
@@ -28,10 +34,14 @@ sub adjustViews()
     ' set the text string for the title label - tr() is optional for translating the string to another language
     m.cityNameLabel.text = tr("Bangalore")
     ' set the font size for the title label
-    m.cityNameLabel.font.size = 62
+    m.cityNameLabel.font.size = 102
     m.dateLabel.font.size = 35
     m.temperatureLabel.font.size = 200
     m.climateLabel.font.size = 50
+
+    m.feelsLikeValueLabel.font.size = 100
+    m.highestValueLabel.font.size = 100
+    m.lowestValueLabel.font.size = 100
 end sub
 
 function changeTimerLabel() as void
@@ -40,11 +50,11 @@ end function
 
 function setWeatherData(weather as object) as void
     if weather <> invalid
-        if IsAssociativeArray(weather.main) AND weather.main.temp <> invalid
+        if IsAssociativeArray(weather.main) and weather.main.temp <> invalid
             m.temperatureLabel.text = Fix(weather.main.temp).toStr() + "°C"
         end if
 
-        if IsArray(weather.weather) AND weather.weather.count() > 0 AND IsString(weather.weather[0].description)
+        if IsArray(weather.weather) and weather.weather.count() > 0 and IsString(weather.weather[0].description)
             m.climateLabel.text = weather.weather[0].description
         end if
 
