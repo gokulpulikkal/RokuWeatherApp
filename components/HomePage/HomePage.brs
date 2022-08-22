@@ -81,7 +81,7 @@ function setWeatherData(weather as object) as void
             end if
 
             if IsString(weather.weather[0].main)
-                m.weatherInfoPoster.uri = Substitute("pkg:/images/PosterAssets/{0}.png", "Haze")
+                m.weatherInfoPoster.uri = Substitute("pkg:/images/PosterAssets/{0}.png", weather.weather[0].main)
             end if
         end if
 
