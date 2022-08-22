@@ -6,6 +6,7 @@ sub init()
     m.dateLabel = m.top.findNode("dateLabel")
     m.temperatureLabel = m.top.findNode("temperatureLabel")
     m.climateLabel = m.top.findNode("climateLabel")
+    m.weatherInfoPoster = m.top.findNode("weatherInfoPoster")
 
     m.feelsLikeLabel = m.top.findNode("feelsLikeLabel")
     m.feelsLikeValueLabel = m.top.findNode("feelsLikeValueLabel")
@@ -74,8 +75,14 @@ function setWeatherData(weather as object) as void
             end if
         end if
 
-        if IsArray(weather.weather) and weather.weather.count() > 0 and IsString(weather.weather[0].description)
-            m.climateLabel.text = weather.weather[0].description
+        if IsArray(weather.weather) and weather.weather.count() > 0
+            if IsString(weather.weather[0].description)
+                m.climateLabel.text = weather.weather[0].description
+            end if
+
+            if IsString(weather.weather[0].main)
+                m.weatherInfoPoster.uri = Substitute("pkg:/images/PosterAssets/{0}.png", "Haze")
+            end if
         end if
 
     end if
