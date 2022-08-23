@@ -11,7 +11,7 @@
         <!-- title at top of screen -->
         <Rectangle id="backgroundRect" width="1920" height="1080" color="#121212" />
         <LayoutGroup translation="[60, 60]" itemspacings="[10]">
-            <Label id="dateLabel" text="Monday, August 15" font="font:MediumSystemFont" />
+            <Label id="dateLabel" font="font:MediumSystemFont" />
             <Label id="cityNameLabel" font="font:LargeBoldSystemFont" />
         </LayoutGroup>
 
@@ -20,24 +20,24 @@
 
         <!-- Temperature and weather condition labels -->
         <LayoutGroup translation="[60, 400]">
-            <Label id="temperatureLabel" text="28'F" font="font:LargeBoldSystemFont" />
-            <Label id="climateLabel" text="Clear" font="font:MediumSystemFont" />
+            <Label id="temperatureLabel" font="font:LargeBoldSystemFont" />
+            <Label id="climateLabel" font="font:MediumSystemFont" />
         </LayoutGroup>
 
         <LayoutGroup translation="[960, 510]" layoutDirection="horiz" itemSpacings="[80]">
             <LayoutGroup horizAlignment="left" itemSpacings="[10]">
                 <Label id="feelsLikeLabel" text="Feels Like" font="font:LargeBoldSystemFont" />
-                <Label id="feelsLikeValueLabel" text="22°C" font="font:MediumSystemFont" />
+                <Label id="feelsLikeValueLabel" font="font:MediumSystemFont" />
             </LayoutGroup>
 
             <LayoutGroup horizAlignment="left" itemSpacings="[10]">
                 <Label id="highestLabel" text="Highest" font="font:LargeBoldSystemFont" />
-                <Label id="highestValueLabel" text="22°C" font="font:MediumSystemFont" />
+                <Label id="highestValueLabel" font="font:MediumSystemFont" />
             </LayoutGroup>
 
             <LayoutGroup horizAlignment="left" itemSpacings="[10]">
                 <Label id="lowestLabel" text="Lowest" font="font:LargeBoldSystemFont" />
-                <Label id="lowestValueLabel" text="22°C" font="font:MediumSystemFont" />
+                <Label id="lowestValueLabel" font="font:MediumSystemFont" />
             </LayoutGroup>
         </LayoutGroup>
 
