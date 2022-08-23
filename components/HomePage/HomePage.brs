@@ -1,4 +1,4 @@
-sub init()
+function init()
     ' ### node identifiers ###
     ' identify the title label
     m.timeUpdater = m.top.findNode("timeUpdater")
@@ -24,17 +24,17 @@ sub init()
     ' observe screen visibility
     m.top.observeField("visible", "onVisible")
     m.timeUpdater.ObserveField("fire", "changeTimerLabel")
-end sub
+end function
 
-sub onVisible(obj)
+function onVisible(obj)
     visible = obj.getData()
     if (visible)
         getCurrentWeatherData()
         m.forecastRowList.setFocus(true)
     end if
-end sub
+end function
 
-sub adjustViews()
+function adjustViews()
     ' set the text string for the title label - tr() is optional for translating the string to another language
     m.cityNameLabel.text = tr("Bangalore")
     ' set the font size for the title label
@@ -62,7 +62,7 @@ sub adjustViews()
     m.forecastRowList.itemSpacing = [0, 40]
 
 
-end sub
+end function
 
 function changeTimerLabel() as void
     m.dateLabel.text = getCurrentTimeString()

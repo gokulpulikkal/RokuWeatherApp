@@ -17,12 +17,12 @@
   <children>
     <Rectangle id="backgroundRect" color="#2a2a2a" translation="[ 10, 10 ]" scaleRotateCenter="[ 250.0, 140.0 ]">
 
-      <LayoutGroup translation="[30, 20]" itemSpacings="[6]">
+      <LayoutGroup translation="[30, 35]" itemSpacings="[6]">
         <Label id="timeLabel" text="12:00 AM" font="font:MediumSystemFont" />
         <Label id="weatherConditionLabel" text="Scattered Rain" font="font:MediumSystemFont" />
       </LayoutGroup>
 
-      <LayoutGroup translation="[30, 170]" layoutDirection="horiz" itemSpacings="[120]" vertAlignment="center">
+      <LayoutGroup translation="[30, 170]" layoutDirection="horiz" itemSpacings="[150]" vertAlignment="center">
         <LayoutGroup itemSpacings="[4]">
           <Label id="highestTempLabel" text="H: 30°C" font="font:LargeBoldSystemFont" />
           <Label id="lowestTempLabel" text="L: 20°C" font="font:LargeBoldSystemFont" />

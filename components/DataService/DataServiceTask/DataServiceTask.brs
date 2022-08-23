@@ -1,7 +1,7 @@
-sub init()
+function init()
 	m.port = createObject("roMessagePort")
 	m.top.functionName="getDataFromServer"
-end sub
+end function
 
 function getDataFromServer()
 	requestObject = createUrlObject(m.top.uri)
