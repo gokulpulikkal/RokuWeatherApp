@@ -14,6 +14,8 @@ sub init()
     m.highestValueLabel = m.top.findNode("highestValueLabel")
     m.lowestLabel = m.top.findNode("lowestLabel")
     m.lowestValueLabel = m.top.findNode("lowestValueLabel")
+    m.forecastRowList = m.top.findNode("forecastRowList")
+    m.forecastRowList.content = CreateObject("roSGNode", "ForecastRowListItemContents")
 
     adjustViews()
     m.dateLabel.text = getCurrentTimeString()
@@ -28,6 +30,7 @@ sub onVisible(obj)
     visible = obj.getData()
     if (visible)
         getCurrentWeatherData()
+        m.forecastRowList.setFocus(true)
     end if
 end sub
 
@@ -49,6 +52,16 @@ sub adjustViews()
     m.feelsLikeValueLabel.color = "#f5054f"
     m.highestValueLabel.color = "#f5054f"
     m.lowestValueLabel.color = "#f5054f"
+
+    ' Adjust RowList properties
+    m.forecastRowList.showRowLabel = [false]
+    m.forecastRowList.focusXOffset = [60]
+    m.forecastRowList.rowItemSpacing = [[50, 0]]
+    m.forecastRowList.itemSize = [1920, 280]
+    m.forecastRowList.rowItemSize = [[480, 250]]
+    m.forecastRowList.itemSpacing = [0, 40]
+
+
 end sub
 
 function changeTimerLabel() as void
