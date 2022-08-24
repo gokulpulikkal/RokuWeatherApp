@@ -4,8 +4,11 @@
     <script type="text/brightscript" uri="HomePageModel.brs" />
     <script type="text/brightscript" uri="pkg:/components/DataService/DataController/DataController.brs" />
     <script type="text/brightscript" uri="pkg:/source/Utils/CommonChecks.brs" />
+    <script type="text/brightscript" uri="pkg:/source/Utils/UtilFunctions.brs" />
+
     <interface>
-        <field id="currentWeatherData" type="assocarray" onChange="onTitleChange" />
+        <field id="currentWeatherData" type="assocarray" onChange="setWeatherData" />
+        <field id="weatherForecastData" type="node" onChange="setForeCastData" />
     </interface>
     <children>
         <!-- title at top of screen -->

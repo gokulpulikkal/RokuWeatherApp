@@ -1,6 +1,9 @@
 function init()
 	m.port = createObject("roMessagePort")
 	m.top.functionName="getDataFromServer"
+
+    ' App ID that needed for every API call
+    m.APPID = "93fc112871e2f24aba37f420bf035e68"
 end function
 
 function getDataFromServer()
@@ -40,6 +43,7 @@ end function
 function createUrlObject(urlString as string) as dynamic
     urlObject = invalid
     urlObject = CreateObject("roUrlTransfer")
+    urlString = urlString + "&appid=" + m.APPID
     urlObject.SetUrl(urlString)
 
     useSecureConnection = secureConnectionUsed(urlString)

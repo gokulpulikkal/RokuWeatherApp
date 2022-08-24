@@ -19,6 +19,29 @@ end function
 
 function showContent() as void
     itemContent = m.top.itemContent
+    if itemContent <> invalid
+
+        if IsString(itemContent.time)
+            m.timeLabel.text = itemContent.time
+        end if
+
+        if IsString(itemContent.weatherDescription)
+            m.weatherConditionLabel.text = itemContent.weatherDescription
+        end if
+
+        if IsString(itemContent.main)
+            m.weatherInfoPoster.uri = Substitute("pkg:/images/PosterAssets/{0}.png", itemContent.main)
+        end if
+
+        if itemContent.tempMax <> invalid
+            m.highestTempLabel.text = "H: " + Fix(itemContent.tempMax).toStr() + "°C"
+        end if
+
+        if itemContent.tempMax <> invalid
+            m.lowestTempLabel.text = "L: " + Fix(itemContent.tempMin).toStr() + "°C"
+        end if
+
+    end if
 end function
 
 function showFocus() as void

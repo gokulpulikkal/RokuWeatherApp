@@ -5,6 +5,7 @@
 <component name="ForecastRowListItem" extends="Group">
 
   <script type="text/brightscript" uri="ForecastRowListItem.brs" />
+  <script type="text/brightscript" uri="pkg:/source/Utils/CommonChecks.brs" />
 
   <interface>
     <field id="itemContent" type="node" onChange="showcontent" />
@@ -18,17 +19,17 @@
     <Rectangle id="backgroundRect" color="#2a2a2a" translation="[ 10, 10 ]" scaleRotateCenter="[ 250.0, 140.0 ]">
 
       <LayoutGroup translation="[30, 35]" itemSpacings="[6]">
-        <Label id="timeLabel" text="12:00 AM" font="font:MediumSystemFont" />
-        <Label id="weatherConditionLabel" text="Scattered Rain" font="font:MediumSystemFont" />
+        <Label id="timeLabel" font="font:MediumSystemFont" />
+        <Label id="weatherConditionLabel" font="font:MediumSystemFont" />
       </LayoutGroup>
 
       <LayoutGroup translation="[30, 170]" layoutDirection="horiz" itemSpacings="[150]" vertAlignment="center">
         <LayoutGroup itemSpacings="[4]">
-          <Label id="highestTempLabel" text="H: 30°C" font="font:LargeBoldSystemFont" />
-          <Label id="lowestTempLabel" text="L: 20°C" font="font:LargeBoldSystemFont" />
+          <Label id="highestTempLabel" font="font:LargeBoldSystemFont" />
+          <Label id="lowestTempLabel" font="font:LargeBoldSystemFont" />
         </LayoutGroup>
 
-        <Poster id="weatherInfoPoster" loadDisplayMode="scaleToFit" width="120" height="120" uri="pkg:/images/PosterAssets/Clouds.png" />
+        <Poster id="weatherInfoPoster" loadDisplayMode="scaleToFit" width="120" height="120" failedBitmapUri="pkg:/images/PosterAssets/Clouds.png" />
 
       </LayoutGroup>
 

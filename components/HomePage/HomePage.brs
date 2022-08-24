@@ -15,7 +15,6 @@ function init()
     m.lowestLabel = m.top.findNode("lowestLabel")
     m.lowestValueLabel = m.top.findNode("lowestValueLabel")
     m.forecastRowList = m.top.findNode("forecastRowList")
-    m.forecastRowList.content = CreateObject("roSGNode", "ForecastRowListItemContents")
 
     adjustViews()
     m.dateLabel.text = getCurrentTimeString()
@@ -30,6 +29,7 @@ function onVisible(obj)
     visible = obj.getData()
     if (visible)
         getCurrentWeatherData()
+        getForeCastData()
         m.forecastRowList.setFocus(true)
     end if
 end function
@@ -68,7 +68,8 @@ function changeTimerLabel() as void
     m.dateLabel.text = getCurrentTimeString()
 end function
 
-function setWeatherData(weather as object) as void
+function setWeatherData(event as object) as void
+    weather = event.getData()
     if weather <> invalid
         if IsAssociativeArray(weather.main)
             if weather.main.temp <> invalid
@@ -101,6 +102,13 @@ function setWeatherData(weather as object) as void
     end if
 end function
 
+function setForeCastData(event as object) as void
+    forecastContentNode = event.getData()
+
+    if forecastContentNode <> invalid
+        m.forecastRowList.content = forecastContentNode
+    end if
+end function
 
 ' capture key events from remote control
 function onKeyEvent(key as string, press as boolean) as boolean

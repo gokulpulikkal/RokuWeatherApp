@@ -1,7 +1,7 @@
 
 function getCurrentWeatherData() as void
     requestObject = {}
-    requestObject.uri = "https://api.openweathermap.org/data/2.5/weather?lat=12.9767936&lon=77.590082&appid=93fc112871e2f24aba37f420bf035e68&units=metric"
+    requestObject.uri = "https://api.openweathermap.org/data/2.5/weather?lat=12.9767936&lon=77.590082&units=metric"
     sendRequest(requestObject, "onCurrentWeatherDataResponse")
 end function
 
@@ -10,9 +10,60 @@ function onCurrentWeatherDataResponse(event as object) as void
     if response <> invalid
         responseAssocArray = ParseJson(response)
         if responseAssocArray <> invalid
-            setWeatherData(responseAssocArray)
+            m.top.currentWeatherData = responseAssocArray
         end if
     end if
+end function
+
+function getForeCastData() as void
+    requestObject = {}
+    requestObject.uri = "https://api.openweathermap.org/data/2.5/forecast?lat=12.9767936&lon=77.590082&units=metric"
+    sendRequest(requestObject, "onForecastDataResponse")
+end function
+
+function onForecastDataResponse(event as object)
+    response = event.getData()
+    if response <> invalid
+        responseAssocArray = ParseJson(response)
+        if responseAssocArray <> invalid
+            createForecastRowListContent(responseAssocArray)
+        end if
+    end if
+end function
+
+function createForecastRowListContent(apiResponse as object) as void
+    if NOT IsAssociativeArray(apiResponse) AND IsArray(apiResponse.list) AND apiResponse.list.count() > 0 return
+
+    currentTimeInSec = getCurrentTimeInSec()
+
+    rowListContentNode = CreateObject("roSGNode", "ContentNode")
+
+    ' Since only one Row is there
+    forecastRow = rowListContentNode.createChild("ContentNode")
+
+    for each item in apiResponse.list
+        if item.dt <> invalid AND item.dt > currentTimeInSec
+
+            forecastRowItem = forecastRow.createChild("ContentNode")
+            forecastDetails = {
+                "time": getTimeStringFromSeconds(item.dt)
+            }
+
+            if IsArray(item.weather) AND item.weather.count() > 0
+                forecastDetails.weatherDescription = item.weather[0].description
+                forecastDetails.main = item.weather[0].main
+            end if
+
+            if IsAssociativeArray(item.main)
+                forecastDetails.tempMax = item.main.temp_max
+                forecastDetails.tempMin = item.main.temp_min
+            end if
+
+            forecastRowItem.update(forecastDetails, true)
+        end if
+    end for
+    
+    m.top.weatherForecastData = rowListContentNode
 end function
 
 '''''''''
@@ -20,8 +71,9 @@ end function
 '
 ' @return {dynamic} time string
 '''''''''
-function getCurrentTimeString()
+function getCurrentTimeString() as string
     dateObject = CreateObject("roDateTime")
+    dateObject.toLocalTime()
     timeString = ""
     day = Left(dateObject.GetWeekday(), 3)
     timeString += (day + ", ")
@@ -31,7 +83,7 @@ function getCurrentTimeString()
     return timeString
 end function
 
-function getMonthString(dateObject)
+function getMonthString(dateObject) as string
     if dateObject <> invalid
         months = ["January", "Febraury", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         month = dateObject.GetMonth()
@@ -39,7 +91,7 @@ function getMonthString(dateObject)
     end if
 end function
 
-function getTimeStringFromSeconds(seconds)
+function getTimeStringFromSeconds(seconds) as string
     if seconds <> invalid and seconds > 0
         date = CreateObject("roDateTime")
         date.FromSeconds(seconds)
