@@ -45,8 +45,11 @@ function createForecastRowListContent(apiResponse as object) as void
         if item.dt <> invalid AND item.dt > currentTimeInSec
 
             forecastRowItem = forecastRow.createChild("ContentNode")
+            dateObject = CreateObject("roDateTime")
+            dateObject.FromSeconds(item.dt)
+
             forecastDetails = {
-                "time": getTimeStringFromSeconds(item.dt)
+                "time": Left(dateObject.GetWeekday(), 3) + ", " + getTimeStringFromSeconds(item.dt)
             }
 
             if IsArray(item.weather) AND item.weather.count() > 0
@@ -95,7 +98,6 @@ function getTimeStringFromSeconds(seconds) as string
     if seconds <> invalid and seconds > 0
         date = CreateObject("roDateTime")
         date.FromSeconds(seconds)
-        date.ToLocalTime()
         hours = date.GetHours()
         endString = " AM"
         if hours >= 12
