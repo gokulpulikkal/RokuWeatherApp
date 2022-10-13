@@ -17,6 +17,8 @@ function init()
     m.lowestValueLabel = m.top.findNode("lowestValueLabel")
     m.forecastRowList = m.top.findNode("forecastRowList")
 
+    m.locationSelector = m.top.findNode("locationSelector")
+
     adjustViews()
     m.dateLabel.text = getCurrentTimeString()
 
@@ -66,7 +68,8 @@ function adjustViews()
 end function
 
 function onLocationChangeButtonSelect()
-    
+    m.locationSelector.visible = true
+    m.locationSelector.setFocus(true)
 end function
 
 function changeTimerLabel() as void
@@ -118,25 +121,30 @@ end function
 ' capture key events from remote control
 function onKeyEvent(key as string, press as boolean) as boolean
     if (press)
+        returnVal = false
         if (key = "back")
-            ? "back key pressed"
-            return false
+            if m.locationSelector.visible = true
+                m.locationSelector.visible = false
+                m.locationChangeButton.setFocus(true)
+                returnVal = true
+            end if
         end if
 
         if (key = "up")
             if m.forecastRowList.hasFocus()
                 m.forecastRowList.setFocus(false)
                 m.locationChangeButton.setFocus(true)
+                returnVal = true
             end if
-            return true
         end if
 
         if (key = "down")
             if m.locationChangeButton.hasFocus()
                 m.forecastRowList.setFocus(true)
+                returnVal = true
             end if
-            return true
         end if
+        return returnVal
     end if
     return false
 end function

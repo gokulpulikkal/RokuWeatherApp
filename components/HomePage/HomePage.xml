@@ -48,7 +48,10 @@
         <!-- Forecast data showing RowList -->
         <RowList id="forecastRowList" translation="[0,750]" itemComponentName="ForecastRowListItem" drawFocusFeedback="false" rowFocusAnimationStyle="floatingFocus" />
 
+        <!-- Popup child -->
+        <CustomPopupBase id="locationSelector" visible="false"/>
 
+        <!-- Timers  -->
         <Timer id="timeUpdater" repeat="true" duration="60" control="start" />
     </children>
 </component>
