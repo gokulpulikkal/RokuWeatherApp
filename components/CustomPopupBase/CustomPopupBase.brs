@@ -31,6 +31,6 @@ function setTranslations() as void
 
     m.popupTitleLabel.translation = [120, 80]
 
-    m.miniKeyboard.translation = [120, (dialogBackgroundPosterBRect.height/2)-(miniKeyboardBoundingRect.height/2)-miniKeyboardTextBoxBRect.height]
-    m.miniKeyboard.textEditBox.translation = [ m.miniKeyboard.translation[0] + miniKeyboardBoundingRect.width + 20, m.miniKeyboard.translation[1] + 33]
+    m.miniKeyboard.translation = [120, 80 + (dialogBackgroundPosterBRect.height/2)-(miniKeyboardBoundingRect.height/2)-miniKeyboardTextBoxBRect.height]
+    m.miniKeyboard.textEditBox.translation = [ m.miniKeyboard.translation[0] + miniKeyboardBoundingRect.width + 20, m.miniKeyboard.translation[1] - 50]
 end function
