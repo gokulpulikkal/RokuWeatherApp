@@ -3,8 +3,8 @@
     <script type="text/brightscript" uri="HomePage.brs" />
     <script type="text/brightscript" uri="HomePageModel.brs" />
     <script type="text/brightscript" uri="pkg:/components/DataService/DataController/DataController.brs" />
-    <script type="text/brightscript" uri="pkg:/source/Utils/CommonChecks.brs" />
-    <script type="text/brightscript" uri="pkg:/source/Utils/UtilFunctions.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utils/CommonChecks.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utils/UtilFunctions.brs" />
 
     <interface>
         <field id="currentWeatherData" type="assocarray" onChange="setWeatherData" />
@@ -16,6 +16,7 @@
         <LayoutGroup translation="[60, 60]" itemspacings="[10]">
             <Label id="dateLabel" font="font:MediumSystemFont" />
             <Label id="cityNameLabel" font="font:LargeBoldSystemFont" />
+            <Button id = "locationChangeButton" text = "Change Location" showFocusFootprint = "true" minWidth = "240" />
         </LayoutGroup>
 
         <!-- weather icon on right side of screen -->

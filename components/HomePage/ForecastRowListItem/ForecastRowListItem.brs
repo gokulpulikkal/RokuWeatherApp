@@ -50,4 +50,9 @@ function showFocus() as void
 end function
 
 function showRowFocus() as void
+    if NOT m.top.rowListHasFocus
+        m.backgroundRect.scale = [1, 1]
+    else
+        showFocus()
+    end if
 end function

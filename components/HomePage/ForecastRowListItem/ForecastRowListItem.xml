@@ -5,12 +5,12 @@
 <component name="ForecastRowListItem" extends="Group">
 
   <script type="text/brightscript" uri="ForecastRowListItem.brs" />
-  <script type="text/brightscript" uri="pkg:/source/Utils/CommonChecks.brs" />
+  <script type="text/brightscript" uri="pkg:/components/Utils/CommonChecks.brs" />
 
   <interface>
     <field id="itemContent" type="node" onChange="showcontent" />
     <field id="focusPercent" type="float" onChange="showfocus" />
-    <field id="rowFocusPercent" type="float" onChange="showrowfocus" />
+    <field id="rowListHasFocus" type="boolean" onChange="showrowfocus" />
     <field id="width" type="float" alias="backgroundRect.width" />
     <field id="height" type="float" alias="backgroundRect.height" />
   </interface>

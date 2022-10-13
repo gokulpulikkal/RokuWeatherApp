@@ -7,6 +7,7 @@ function init()
     m.temperatureLabel = m.top.findNode("temperatureLabel")
     m.climateLabel = m.top.findNode("climateLabel")
     m.weatherInfoPoster = m.top.findNode("weatherInfoPoster")
+    m.locationChangeButton = m.top.findNode("locationChangeButton")
 
     m.feelsLikeLabel = m.top.findNode("feelsLikeLabel")
     m.feelsLikeValueLabel = m.top.findNode("feelsLikeValueLabel")
@@ -23,6 +24,7 @@ function init()
     ' observe screen visibility
     m.top.observeField("visible", "onVisible")
     m.timeUpdater.ObserveField("fire", "changeTimerLabel")
+    m.locationChangeButton.ObserveField("buttonSelected", "onLocationChangeButtonSelect")
 end function
 
 function onVisible(obj)
@@ -61,7 +63,10 @@ function adjustViews()
     m.forecastRowList.rowItemSize = [[480, 250]]
     m.forecastRowList.itemSpacing = [0, 40]
 
+end function
 
+function onLocationChangeButtonSelect()
+    
 end function
 
 function changeTimerLabel() as void
@@ -119,12 +124,17 @@ function onKeyEvent(key as string, press as boolean) as boolean
         end if
 
         if (key = "up")
-            ? "up key pressed"
+            if m.forecastRowList.hasFocus()
+                m.forecastRowList.setFocus(false)
+                m.locationChangeButton.setFocus(true)
+            end if
             return true
         end if
 
         if (key = "down")
-            ? "down key pressed"
+            if m.locationChangeButton.hasFocus()
+                m.forecastRowList.setFocus(true)
+            end if
             return true
         end if
     end if
