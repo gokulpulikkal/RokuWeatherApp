@@ -7,6 +7,7 @@ function init()
     
     m.top.observeField("visible", "onVisible")
     m.top.observeField("focusedChild", "onFocusChildChange")
+    m.miniKeyboard.observeField("text", "onKeyboardTextChange")
 
 end function
 
@@ -33,4 +34,11 @@ function setTranslations() as void
 
     m.miniKeyboard.translation = [120, 80 + (dialogBackgroundPosterBRect.height/2)-(miniKeyboardBoundingRect.height/2)-miniKeyboardTextBoxBRect.height]
     m.miniKeyboard.textEditBox.translation = [ m.miniKeyboard.translation[0] + miniKeyboardBoundingRect.width + 20, m.miniKeyboard.translation[1] - 50]
+end function
+
+function onKeyboardTextChange(event) as void
+    text = event.getData()
+    if IsString(text)
+        
+    end if
 end function
