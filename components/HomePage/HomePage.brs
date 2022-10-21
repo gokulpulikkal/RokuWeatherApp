@@ -115,6 +115,14 @@ function setWeatherData(event as object) as void
     end if
 end function
 
+function setLocationDetails(locationNode as object) as void
+    if locationNode <> invalid
+        if IsString(locationNode.name)
+            m.cityNameLabel.text = locationNode.name
+        end if
+    end if
+end function
+
 function setForeCastData(event as object) as void
     forecastContentNode = event.getData()
 
