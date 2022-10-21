@@ -19,6 +19,9 @@ function init()
 
     m.locationSelector = m.top.findNode("locationSelector")
 
+    ' App ID that needed for every API call
+    m.APPID = "93fc112871e2f24aba37f420bf035e68"
+
     adjustViews()
     m.dateLabel.text = getCurrentTimeString()
 
@@ -27,6 +30,8 @@ function init()
     m.top.observeField("visible", "onVisible")
     m.timeUpdater.ObserveField("fire", "changeTimerLabel")
     m.locationChangeButton.ObserveField("buttonSelected", "onLocationChangeButtonSelect")
+    m.locationSelector.ObserveField("exitPopup", "closeLocationSelector")
+    m.locationSelector.ObserveField("selectedCity", "onCitySelect")
 end function
 
 function onVisible(obj)
@@ -118,14 +123,18 @@ function setForeCastData(event as object) as void
     end if
 end function
 
+function closeLocationSelector()
+    m.locationSelector.visible = false
+    m.locationChangeButton.setFocus(true)
+end function
+
 ' capture key events from remote control
 function onKeyEvent(key as string, press as boolean) as boolean
     if (press)
         returnVal = false
         if (key = "back")
             if m.locationSelector.visible = true
-                m.locationSelector.visible = false
-                m.locationChangeButton.setFocus(true)
+                closeLocationSelector()
                 returnVal = true
             end if
         end if

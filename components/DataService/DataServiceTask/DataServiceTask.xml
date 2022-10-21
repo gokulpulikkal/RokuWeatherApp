@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="DataServiceTask" extends="Task">
 	<script type="text/brightscript" uri="DataServiceTask.brs"/>
+    <script type="text/brightscript" uri="pkg:/components/Utils/CommonChecks.brs" />
 	<interface>
 		<field id="uri" type="uri" alwaysNotify="true" />
 		<field id="requestType" type="string" value="Get" alwaysNotify="true"/>

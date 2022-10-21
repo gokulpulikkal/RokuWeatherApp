@@ -1,9 +1,6 @@
 function init()
 	m.port = createObject("roMessagePort")
 	m.top.functionName="getDataFromServer"
-
-    ' App ID that needed for every API call
-    m.APPID = "93fc112871e2f24aba37f420bf035e68"
 end function
 
 function getDataFromServer()
@@ -11,16 +8,23 @@ function getDataFromServer()
     requestObject.RetainBodyOnError(true)
 	requestObject.setMessagePort(m.port)
 
+    if (IsAssociativeArray(m.top.header))
+        headers = m.top.header
+        for each key in headers
+            requestObject.AddHeader(key, headers[key])
+        end for
+    end if
+
 	if (UCase(m.top.requestType)="GET") then
 		urlResponse = requestObject.AsyncGetToString()
 	else
         requestObject.RetainBodyOnError(true)
         urlResponse = requestObject.AsyncPostFromString(m.top.param)
 	end if
-	processReqest(urlResponse)
+	processRequest(urlResponse)
 end function
 
-function processReqest(urlResponse)
+function processRequest(urlResponse)
     if(urlResponse = true)
         while true
             msg = wait(0, m.port)
@@ -43,7 +47,6 @@ end function
 function createUrlObject(urlString as string) as dynamic
     urlObject = invalid
     urlObject = CreateObject("roUrlTransfer")
-    urlString = urlString + "&appid=" + m.APPID
     urlObject.SetUrl(urlString)
 
     useSecureConnection = secureConnectionUsed(urlString)

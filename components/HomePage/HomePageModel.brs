@@ -1,7 +1,14 @@
 
+function onCitySelect(event as object) as void
+    if event <> invalid AND event.getData() <> invalid
+        locationNode = event.getData()
+        
+    end if
+end function
+
 function getCurrentWeatherData() as void
     requestObject = {}
-    requestObject.uri = "https://api.openweathermap.org/data/2.5/weather?lat=12.9767936&lon=77.590082&units=metric"
+    requestObject.uri = "https://api.openweathermap.org/data/2.5/weather?lat=12.9767936&lon=77.590082&units=metric&appid=" + m.APPID
     sendRequest(requestObject, "onCurrentWeatherDataResponse")
 end function
 
@@ -17,7 +24,7 @@ end function
 
 function getForeCastData() as void
     requestObject = {}
-    requestObject.uri = "https://api.openweathermap.org/data/2.5/forecast?lat=12.9767936&lon=77.590082&units=metric"
+    requestObject.uri = "https://api.openweathermap.org/data/2.5/forecast?lat=12.9767936&lon=77.590082&units=metric&appid=" + m.APPID
     sendRequest(requestObject, "onForecastDataResponse")
 end function
 
