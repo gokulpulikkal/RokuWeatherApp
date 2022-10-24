@@ -45,3 +45,15 @@ End Function
 Function IsValid(value As Dynamic) As Boolean
     Return Type(value) <> "<uninitialized>" And value <> invalid
 End Function
+
+'***********************************************************************
+'* isSGNode(input)
+'* Check if an input is roSGNode or not
+'***********************************************************************
+function isSGNode(input) as boolean
+    typeInput = type(input)
+
+    isOk = (typeInput = "roSGNode")
+
+    return isOk
+end function

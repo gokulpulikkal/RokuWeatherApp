@@ -1,13 +1,38 @@
+function getInitialData()
+    locationData = readFromRegistry("locationDetails")
+    if IsString(locationData) AND locationData <> ""
+        locationNode = ParseJson(locationData)
+        getDataForLocationNode(locationNode)
+    else
+        onLocationChangeButtonSelect()
+    end if
+
+end function
 
 function onCitySelect(event as object) as void
     if event <> invalid AND event.getData() <> invalid
         locationNode = event.getData()
-        ' Clear all the current data
-        ' Get new location data
-        if locationNode <> invalid AND locationNode.latitude <> invalid AND locationNode.longitude <> invalid
-            getCurrentWeatherData(locationNode.longitude, locationNode.latitude)
-            getForeCastData(locationNode.longitude, locationNode.latitude)
-            setLocationDetails(locationNode)
+        getDataForLocationNode(locationNode)
+    end if
+end function
+
+function getDataForLocationNode(locationNode)
+    ' Clear all the current data
+    ' Get new location data
+    if locationNode <> invalid AND locationNode.latitude <> invalid AND locationNode.longitude <> invalid
+        getCurrentWeatherData(locationNode.longitude, locationNode.latitude)
+        getForeCastData(locationNode.longitude, locationNode.latitude)
+        setLocationDetails(locationNode)
+
+        ' Storing the location details to registry
+        if isSGNode(locationNode)
+            locationNodeAA = locationNode.getFields()
+        else
+            locationNodeAA = locationNode
+        end if
+        
+        if IsAssociativeArray(locationNodeAA)
+            writeToRegistry("locationDetails", FormatJson(locationNodeAA))
         end if
     end if
 end function

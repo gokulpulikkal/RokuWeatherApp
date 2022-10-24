@@ -22,7 +22,8 @@ end function
 function onVisible(obj)
     visible = obj.getData()
     if (visible)
-        
+        m.cityList.content = invalid
+        m.miniKeyboard.textEditBox.text = ""
     end if
 end function
 

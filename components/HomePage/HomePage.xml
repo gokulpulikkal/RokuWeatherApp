@@ -5,6 +5,7 @@
     <script type="text/brightscript" uri="pkg:/components/DataService/DataController/DataController.brs" />
     <script type="text/brightscript" uri="pkg:/components/Utils/CommonChecks.brs" />
     <script type="text/brightscript" uri="pkg:/components/Utils/UtilFunctions.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utils/RegistryLibrary.brs" />
 
     <interface>
         <field id="currentWeatherData" type="assocarray" onChange="setWeatherData" />

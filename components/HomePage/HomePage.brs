@@ -37,9 +37,7 @@ end function
 function onVisible(obj)
     visible = obj.getData()
     if (visible)
-        getCurrentWeatherData()
-        getForeCastData()
-        m.forecastRowList.setFocus(true)
+        getInitialData()
     end if
 end function
 
@@ -128,6 +126,7 @@ function setForeCastData(event as object) as void
 
     if forecastContentNode <> invalid
         m.forecastRowList.content = forecastContentNode
+        m.forecastRowList.setFocus(true)
     end if
 end function
 
