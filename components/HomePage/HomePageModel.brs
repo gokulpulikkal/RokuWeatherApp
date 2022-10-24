@@ -1,7 +1,45 @@
+function getInitialData()
+    locationData = readFromRegistry("locationDetails")
+    if IsString(locationData) AND locationData <> ""
+        locationNode = ParseJson(locationData)
+        getDataForLocationNode(locationNode)
+    else
+        onLocationChangeButtonSelect()
+    end if
 
-function getCurrentWeatherData() as void
+end function
+
+function onCitySelect(event as object) as void
+    if event <> invalid AND event.getData() <> invalid
+        locationNode = event.getData()
+        getDataForLocationNode(locationNode)
+    end if
+end function
+
+function getDataForLocationNode(locationNode)
+    ' Clear all the current data
+    ' Get new location data
+    if locationNode <> invalid AND locationNode.latitude <> invalid AND locationNode.longitude <> invalid
+        getCurrentWeatherData(locationNode.longitude, locationNode.latitude)
+        getForeCastData(locationNode.longitude, locationNode.latitude)
+        setLocationDetails(locationNode)
+
+        ' Storing the location details to registry
+        if isSGNode(locationNode)
+            locationNodeAA = locationNode.getFields()
+        else
+            locationNodeAA = locationNode
+        end if
+        
+        if IsAssociativeArray(locationNodeAA)
+            writeToRegistry("locationDetails", FormatJson(locationNodeAA))
+        end if
+    end if
+end function
+
+function getCurrentWeatherData(lon = 77.590082, lat = 12.9767936) as void
     requestObject = {}
-    requestObject.uri = "https://api.openweathermap.org/data/2.5/weather?lat=12.9767936&lon=77.590082&units=metric"
+    requestObject.uri = "https://api.openweathermap.org/data/2.5/weather?lat="+ lat.toStr() +"&lon="+ lon.toStr() +"&units=metric&appid=" + m.APPID
     sendRequest(requestObject, "onCurrentWeatherDataResponse")
 end function
 
@@ -15,9 +53,9 @@ function onCurrentWeatherDataResponse(event as object) as void
     end if
 end function
 
-function getForeCastData() as void
+function getForeCastData(lon = 77.590082, lat = 12.9767936) as void
     requestObject = {}
-    requestObject.uri = "https://api.openweathermap.org/data/2.5/forecast?lat=12.9767936&lon=77.590082&units=metric"
+    requestObject.uri = "https://api.openweathermap.org/data/2.5/forecast?lat="+ lat.toStr() +"&lon="+ lon.toStr() +"&units=metric&appid=" + m.APPID
     sendRequest(requestObject, "onForecastDataResponse")
 end function
 

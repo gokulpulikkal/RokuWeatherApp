@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="LocationSelectionPopup" extends="Group">
+
+    <script type="text/brightscript" uri="LocationSelectionPopup.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utils/CommonChecks.brs" />
+    <script type="text/brightscript" uri="LocationSelectionData.brs" />
+    <script type="text/brightscript" uri="pkg:/components/DataService/DataController/DataController.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utils/RegistryLibrary.brs" />
+
+    <interface>
+        <field id="listData" type="node" onChange="setCityListData" />
+        <field id="selectedCity" type="node" alwaysNotify="true"/>
+        <field id="exitPopup" type="boolean" alwaysNotify="true"/>
+    </interface>
+
+    <children>
+        <Poster id="dialogBackgroundPoster" translation="[210, 40]" width="1500" height="1000" uri="pkg:/images/backgrounds/dialog-background-fhd.9.png">
+            <Label id="popupTitleLabel" text="Select your City" font="font:LargeBoldSystemFont" />
+            <DynamicMiniKeyboard id = "miniKeyboard"/>
+
+            <LabelList id="cityList" itemSize="[520,70]" fixedFocusWrap="floatingFocus"/>
+        </Poster>
+    </children>
+</component>
