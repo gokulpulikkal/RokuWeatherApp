@@ -20,7 +20,7 @@ function init()
     m.locationSelector = m.top.findNode("locationSelector")
 
     ' App ID that needed for every API call
-    m.APPID = "93fc112871e2f24aba37f420bf035e68"
+    m.APPID = safeString(getValueFromKey("OpenWeatherKey"))
 
     adjustViews()
     m.dateLabel.text = getCurrentTimeString()

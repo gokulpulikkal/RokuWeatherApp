@@ -2,8 +2,9 @@
 function getLocations(str as string) as void
     requestObject = {}
     requestObject.uri = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=" + str
+    apiKey = safeString(getValueFromKey("locationsAPIKey"))
     header = {
-        "X-RapidAPI-Key": "87ae0c19b2mshd026566d97a0314p162943jsn20060c3ded2c"
+        "X-RapidAPI-Key": apiKey
     }
     requestObject.header = header
     sendSearchRequest(requestObject, "onLocationsResponse")

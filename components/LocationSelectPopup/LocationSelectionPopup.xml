@@ -6,6 +6,7 @@
     <script type="text/brightscript" uri="LocationSelectionData.brs" />
     <script type="text/brightscript" uri="pkg:/components/DataService/DataController/DataController.brs" />
     <script type="text/brightscript" uri="pkg:/components/Utils/RegistryLibrary.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utils/UtilFunctions.brs" />
 
     <interface>
         <field id="listData" type="node" onChange="setCityListData" />
@@ -18,7 +19,7 @@
             <Label id="popupTitleLabel" text="Select your City" font="font:LargeBoldSystemFont" />
             <DynamicMiniKeyboard id = "miniKeyboard"/>
 
-            <LabelList id="cityList" itemSize="[520,70]" fixedFocusWrap="floatingFocus"/>
+            <LabelList id="cityList" itemSize="[520,70]" />
         </Poster>
     </children>
 </component>
