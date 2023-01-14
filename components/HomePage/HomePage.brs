@@ -8,6 +8,7 @@ function init()
     m.weatherInfoPoster = m.top.findNode("weatherInfoPoster")
     m.locationChangeButton = m.top.findNode("locationChangeButton")
     m.splashImagePoster = m.top.findNode("SplashImagePoster")
+    m.loadingIndicator = m.top.findNode("loadingIndicator")
 
     m.timeUpdater = m.top.findNode("timeUpdater")
     m.weatherUpdateTimer = m.top.findNode("weatherUpdateTimer")
@@ -72,6 +73,11 @@ function adjustViews()
     m.forecastRowList.rowItemSize = [[480, 250]]
     m.forecastRowList.itemSpacing = [0, 40]
 
+    ' LoadingIndicator handling
+    centerX = (1920 - m.loadingIndicator.poster.bitmapWidth) / 2
+    centerY = (1080 - m.loadingIndicator.poster.bitmapHeight) / 2
+    m.loadingIndicator.translation = [ centerX + 450 , centerY + 20 ]
+
 end function
 
 function onLocationChangeButtonSelect()
@@ -132,6 +138,7 @@ end function
 function setForeCastData(event as object) as void
     ' Hiding Splash Image
     handleSplashScreen(false)
+    m.loadingIndicator.visible = false
 
     forecastContentNode = event.getData()
     if forecastContentNode <> invalid

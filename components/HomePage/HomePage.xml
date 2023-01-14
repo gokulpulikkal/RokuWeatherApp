@@ -57,5 +57,6 @@
         <Timer id="weatherUpdateTimer" repeat="false"/>
 
         <Poster id="SplashImagePoster" uri="pkg:/images/WeatherSplash.jpeg" width="1920" height="1080"/>
+        <CustomSimpleSpinner id = "loadingIndicator" visible = "true" translation="[200, 200]" posterBlendColor="#000"/>
     </children>
 </component>

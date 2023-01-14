@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="CustomSimpleSpinner" extends="BusySpinner">
+
+    <script type="text/brightscript" uri="CustomSimpleSpinner.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utils/CommonChecks.brs" />
+    <script type="text/brightscript" uri="pkg:/components/DataService/DataController/DataController.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utils/RegistryLibrary.brs" />
+    <script type="text/brightscript" uri="pkg:/components/Utils/UtilFunctions.brs" />
+
+    <interface>
+        <field id="posterURI" value="pkg:/images/busyspinner_hd.png" type="string" onChange="onPosterPropertyChange" alwaysNotify="true"/>
+        <field id="posterBlendColor" type="string" onChange="onPosterPropertyChange" alwaysNotify="true"/>
+    </interface>
+
+    <children>
+    </children>
+</component>

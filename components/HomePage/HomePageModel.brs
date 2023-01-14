@@ -5,6 +5,7 @@ function getLocationData()
         getDataForLocationNode(locationNode)
     else
         handleSplashScreen(false)
+        m.loadingIndicator.visible = false
         onLocationChangeButtonSelect()
     end if
 
