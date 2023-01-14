@@ -1,13 +1,16 @@
 function init()
     ' ### node identifiers ###
     ' identify the title label
-    m.timeUpdater = m.top.findNode("timeUpdater")
     m.cityNameLabel = m.top.findNode("cityNameLabel")
     m.dateLabel = m.top.findNode("dateLabel")
     m.temperatureLabel = m.top.findNode("temperatureLabel")
     m.climateLabel = m.top.findNode("climateLabel")
     m.weatherInfoPoster = m.top.findNode("weatherInfoPoster")
     m.locationChangeButton = m.top.findNode("locationChangeButton")
+    m.splashImagePoster = m.top.findNode("SplashImagePoster")
+
+    m.timeUpdater = m.top.findNode("timeUpdater")
+    m.weatherUpdateTimer = m.top.findNode("weatherUpdateTimer")
 
     m.feelsLikeLabel = m.top.findNode("feelsLikeLabel")
     m.feelsLikeValueLabel = m.top.findNode("feelsLikeValueLabel")
@@ -29,6 +32,7 @@ function init()
     ' observe screen visibility
     m.top.observeField("visible", "onVisible")
     m.timeUpdater.ObserveField("fire", "changeTimerLabel")
+    m.weatherUpdateTimer.ObserveField("fire", "onWeatherUpdateTimerFired")
     m.locationChangeButton.ObserveField("buttonSelected", "onLocationChangeButtonSelect")
     m.locationSelector.ObserveField("exitPopup", "closeLocationSelector")
     m.locationSelector.ObserveField("selectedCity", "onCitySelect")
@@ -37,7 +41,7 @@ end function
 function onVisible(obj)
     visible = obj.getData()
     if (visible)
-        getInitialData()
+        getLocationData()
     end if
 end function
 
@@ -121,13 +125,39 @@ function setLocationDetails(locationNode as object) as void
     end if
 end function
 
-function setForeCastData(event as object) as void
-    forecastContentNode = event.getData()
+function handleSplashScreen(show = false) as void
+    m.splashImagePoster.visible = show
+end function
 
+function setForeCastData(event as object) as void
+    ' Hiding Splash Image
+    handleSplashScreen(false)
+
+    forecastContentNode = event.getData()
     if forecastContentNode <> invalid
         m.forecastRowList.content = forecastContentNode
         m.forecastRowList.setFocus(true)
+
+        ' Set the timer to for refreshing the forecast rowList
+        startTimerForRefreshingWeatherData(forecastContentNode)
     end if
+end function
+
+function startTimerForRefreshingWeatherData(forecastDataNode as object) as void
+    if isSGNode(forecastDataNode) AND forecastDataNode.getChildCount() >= 1
+        rowData = forecastDataNode.getChild(0)
+        if rowData.getChildCount() > 0
+            firstItem = rowData.getChild(0)
+            currentTime = getCurrentTimeInSec()
+            nextNearestForeCastData = firstItem.timeInSec
+            m.weatherUpdateTimer.duration = Int(nextNearestForeCastData - currentTime)
+            m.weatherUpdateTimer.control = "start"
+        end if
+    end if
+end function
+
+function onWeatherUpdateTimerFired() as void
+    getLocationData()
 end function
 
 function closeLocationSelector()

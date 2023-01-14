@@ -54,5 +54,8 @@
 
         <!-- Timers  -->
         <Timer id="timeUpdater" repeat="true" duration="60" control="start" />
+        <Timer id="weatherUpdateTimer" repeat="false"/>
+
+        <Poster id="SplashImagePoster" uri="pkg:/images/WeatherSplash.jpeg" width="1920" height="1080"/>
     </children>
 </component>
