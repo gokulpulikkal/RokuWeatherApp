@@ -1,9 +1,10 @@
-function getInitialData()
+function getLocationData()
     locationData = readFromRegistry("locationDetails")
     if IsString(locationData) AND locationData <> ""
         locationNode = ParseJson(locationData)
         getDataForLocationNode(locationNode)
     else
+        handleSplashScreen(false)
         onLocationChangeButtonSelect()
     end if
 
@@ -87,7 +88,8 @@ function createForecastRowListContent(apiResponse as object) as void
             dateObject.FromSeconds(item.dt)
 
             forecastDetails = {
-                "time": Left(dateObject.GetWeekday(), 3) + ", " + getTimeStringFromSeconds(item.dt)
+                "time": Left(dateObject.GetWeekday(), 3) + ", " + getTimeStringFromSeconds(item.dt),
+                "timeInSec": item.dt
             }
 
             if IsArray(item.weather) AND item.weather.count() > 0
