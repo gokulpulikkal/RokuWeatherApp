@@ -4,8 +4,9 @@
   <i>WeatherNow is a Roku weather app that displays the current weather for a selected city. It uses the openweathermap and geo db APIs to retrieve the weather data.</i>
 </p>
 
+![52b957c7c4383c8f9bdd78dc672577211dc0d292937e09c32bfc404f86f4a627](https://user-images.githubusercontent.com/52960334/220998189-cb9b61cc-e7ae-4ed5-a7aa-cc13941f951f.png)
 
-![WeatherAPPScreenRecording](https://user-images.githubusercontent.com/52960334/220410292-c3b8c5d5-0d51-422d-b526-6fd66eb127d4.gif)
+![6cb77214541c625d1bbbc6a86e0068de0d6fe03fc87bb3cc8731917503dcee70](https://user-images.githubusercontent.com/52960334/220998201-b2b28e83-7819-46be-a1eb-4542a58ecef0.png)
 
 ## 🧐 About
 
@@ -15,14 +16,10 @@ WeatherNow is a Roku weather app that displays the current weather for a selecte
 
 These instructions will get you a copy of the project up and running on your local machine.
 
-### Prerequisites
-
-At the time of development I used Xocde version 14.2. The target tvOS version is 16.1 or above.
-
 ### Installation
 
 1. clone the repo
-2. create Configs file
+2. create Config file with the path ```components/AppConfigFiles/appConfig.json```
     - Add locationsAPIKey
     - add OpenWeatherKey
     Both you can find from geo db APIs and openweathermap respectively
